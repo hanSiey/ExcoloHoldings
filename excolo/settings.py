@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'excolo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd2hho7e8ucn7fg',
-        'USER': 'ibiaklbzuqdclt',
-        'PASSWORD': '5c702a8b439b81372249ebc6a037216e21beb2911c778207e5928c95ff79b63d',
-        'HOST': 'ec2-52-23-87-65.compute-1.amazonaws.com',
+        'NAME': 'd78fel0756b2de',
+        'USER': 'yddtpvcaatgjmr',
+        'PASSWORD': '27f6e70879a9a895a78eea128933bec16996d853fc59a6ccefa482bb7b0d34af',
+        'HOST': 'ec2-52-72-125-94.compute-1.amazonaws.com',
         'PORT': '5432'
     }
 }
