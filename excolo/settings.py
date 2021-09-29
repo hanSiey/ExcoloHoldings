@@ -81,7 +81,8 @@ WSGI_APPLICATION = 'excolo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd2hho7e8ucn7fg',
         'USER': 'ibiaklbzuqdclt',
         'PASSWORD': '5c702a8b439b81372249ebc6a037216e21beb2911c778207e5928c95ff79b63d',
         'HOST': 'ec2-52-23-87-65.compute-1.amazonaws.com',
