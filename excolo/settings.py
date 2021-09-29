@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7x21!pq!8qf!fc#mn#k@s)kp%89fo5_n6w%ie(8)xgsnnz145z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['excoloholdings.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -81,8 +81,11 @@ WSGI_APPLICATION = 'excolo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'USER': 'ibiaklbzuqdclt',
+        'PASSWORD': '5c702a8b439b81372249ebc6a037216e21beb2911c778207e5928c95ff79b63d',
+        'HOST': 'ec2-52-23-87-65.compute-1.amazonaws.com',
+        'PORT': '5432',
         'CONN_MAX_AGE': 500,
     }
 }
