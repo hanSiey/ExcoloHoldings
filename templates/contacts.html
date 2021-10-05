@@ -109,6 +109,9 @@
             <div class="col-md-9 col-lg-7">
               <h3>Get in Touch</h3>
               <!-- RD Mailform-->
+              {% for message in messages %}
+              <h4 style="text-align: center;color:red;">{{message}}</h4>
+              {% endfor %}
               <form class="rd-form" data-form-output="form-output-global" data-form-type="contact" method="POST" action="contacts">
                 {% csrf_token %}
                 <div class="form-wrap">
@@ -132,9 +135,6 @@
                     <button class="button button-block button-lg button-primary" type="submit">Send</button>
                   </div>
                 </div>
-                {% for message in messages %}
-                <h5 style="text-align: center;">{{message}}</h5>
-                {% endfor %}
               </form>
             </div>
           </div>
