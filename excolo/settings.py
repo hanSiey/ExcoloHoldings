@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7x21!pq!8qf!fc#mn#k@s)kp%89fo5_n6w%ie(8)xgsnnz145z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get("DEBUG", False))
 
-ALLOWED_HOSTS = ['excoloholdings.herokuapp.com']
+ALLOWED_HOSTS = ['excoloholdings.herokuapp.com', 'local']
 
 
 # Application definition
@@ -81,12 +81,8 @@ WSGI_APPLICATION = 'excolo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd8rlpjup7cmb3j',
-        'USER': 'wuhmbsunfojybv',
-        'PASSWORD': 'de55ef0b5ee0a97cc0f8dee5e6d566ee1ab35eb59b960d36a59e9e6cd4183ee0',
-        'HOST': 'ec2-34-199-209-37.compute-1.amazonaws.com',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 db_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
@@ -129,12 +125,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+if DEBUG:
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_SECURE = True
+
+SECURE_SSL_REDIRECT = True
 
 django_heroku.settings(locals())
