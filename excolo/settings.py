@@ -81,8 +81,12 @@ WSGI_APPLICATION = 'excolo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dac4ipfqqp4vgs',
+        'USER': 'iarpkjfokvfsxy',
+        'PASSWORD': 'befbf413c738c8d170d98ac9900c46eea5c3acacd32f45d77a3b1cd992b6c653',
+        'HOST': 'ec2-35-169-204-98.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 db_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
