@@ -17,19 +17,12 @@ import dj_database_url
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7x21!pq!8qf!fc#mn#k@s)kp%89fo5_n6w%ie(8)xgsnnz145z'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get("DEBUG", False))
-
-ALLOWED_HOSTS = ['excoloholdings.herokuapp.com', 'local']
 
 
 # Application definition
@@ -40,19 +33,21 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'Messages',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'excolo.urls'
@@ -79,18 +74,7 @@ WSGI_APPLICATION = 'excolo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dac4ipfqqp4vgs',
-        'USER': 'iarpkjfokvfsxy',
-        'PASSWORD': 'befbf413c738c8d170d98ac9900c46eea5c3acacd32f45d77a3b1cd992b6c653',
-        'HOST': 'ec2-35-169-204-98.compute-1.amazonaws.com',
-        'PORT': '5432'
-    }
-}
-db_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
-DATABASES['default'].update(db_env) 
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -129,10 +113,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-if DEBUG:
-    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
@@ -140,10 +120,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SESSION_COOKIE_SECURE = True
 
-CSRF_COOKIE_SECURE = True
 
-SECURE_SSL_REDIRECT = True
-
-django_heroku.settings(locals())
