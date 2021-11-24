@@ -3,7 +3,7 @@ import os
 
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['excoloholdings.herokuapp.com', 'localhost', '127.0.0.1']
 
